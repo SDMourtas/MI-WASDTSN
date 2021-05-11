@@ -9,9 +9,9 @@
 %                                                                   %
 %   e-Mail: spirosmourtas@gmail.com                                 %
 %                                                                   %
-%   Main paper: S.D.Mourtas, "A Multi-Input WASD for Time-Series    %
-%   Neuronet with Applications in FRED's Industrial Indices",       %
-%   (submitted)                                                     %
+%   Main paper: S.D.Mourtas, "A Weights Direct Determination        %
+%   Neuronet for Time-Series with Applications in the Industrial    %
+%   Indices of the Federal Reserve Bank of St. Louis", (submitted)  %
 %                                                                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
