@@ -18,10 +18,14 @@ Also, the package includes the following six datasets:
 *	Main_MI_WASDTSN.m: the main function
 *	problem.m: input data and parameters of the MI-WASDTSN
 *	WASDTS.m: function for finding the optimal number of hidden-layer neurons, along with the optimal activation function power at each hidden-layer neuron
+*	LSVM.m: function for creating a neural network model based on linear SVM method
+*	EGPR.m: function for creating a neural network model based on exponential GPR method
+*	EBT.m: function for creating a neural network model based on ensemble bagged trees method
 *	Normalization.m: function for normalization
 *	Qmatrix.m: function for calculating the matrix Q
 *	predictN.m: function for forecasting
 *	error_pred.m: function for calculating the mean absolute percentage error (MAPE) of the prediction
+*	test_NN.m: a function that prepares input data for use with LSVM, EGPR and EBT
 
 # Installation
 *	Unzip the file you just downloaded and copy the MI-WASDTSN directory to a location,e.g.,/my-directory/
@@ -30,9 +34,8 @@ Also, the package includes the following six datasets:
 
 # Results
 After running the 'Main_MI_WASDTSN.m file, the package outputs are the following:
-*	The optimal number of hidden-layer neurons.
-*	The optimal activation function power of each hidden-layer neuron.
-*	The prediction and MAPE of the training samples.
+*	The optimal number of hidden-layer neurons and the optimal input variables number.
+*	The models predictions and statistics on the testing samples.
 *	The graphic illustration of the training and forecasting performance.
 
 # Environment
