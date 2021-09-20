@@ -9,9 +9,9 @@
 %                                                                   %
 %   e-Mail: spirosmourtas@gmail.com                                 %
 %                                                                   %
-%   Main paper: S.D.Mourtas, "A Weights Direct Determination        %
-%   Neuronet for Time-Series with Applications in the Industrial    %
-%   Indices of the Federal Reserve Bank of St. Louis", (submitted)  %
+%   Main paper: S.D.Mourtas, "A Multi-Input WASD for Time-Series    %
+%   Neuronet with Applications in FRED's Industrial Indices",       %
+%   (submitted)                                                     %
 %                                                                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -31,15 +31,38 @@ Z=length(Y_test); % number of forecasting prices
 X_N=XY_N(1:length(X_train));
 Y_N=XY_N(length(X_train)+1:end);
 
-% Neuronet model Training
+% Neuronet models Training
 tic
-[W,M,V,Em,E]=WASDTS(X_N,Y_N,vmax); % optimal structure of the neuronet
+[W,M,V,Em,E]=WASDTS(X_N,Y_N,vmax); % optimal structure of the MI-WASDTSN
 toc
 
-%% Forecasting
-pred=predictN(X_test((end-M+1:end)),M,W,V,X_min,X_max,Z); % data forecasting
+X=test_NN(X_train,Y_train,M);
+tic
+TM_LSVM = LSVM(X,x); % Linear SVM model
+toc
+tic
+TM_EGPR = EGPR(X,x); % Exponential GRP model
+toc
+tic
+TM_EBT = EBT(X,x);   % Ensemble Bagged Trees model
+toc
 
-Et=error_pred(pred,Y_test); % Error of test data
+%% Predict
+pred=predictN(X_test((end-M+1:end)),M,W,V,X_min,X_max,Z); % data prediction
+
+Y=test_NN(X_test,Y_test,M);Y=Y(:,1:end-1);
+pred1=TM_LSVM.predictFcn(Y);
+pred2=TM_EGPR.predictFcn(Y);
+pred3=TM_EBT.predictFcn(Y);
+
+fprintf('MI-WASDTSN model statistics on test data: \n')
+Et=error_pred(pred,Y_test);  % Error of test data
+fprintf('LSVM model statistics on test data: \n')
+Et=error_pred(pred1,Y_test); % Error of test data
+fprintf('EGPR model statistics on test data: \n')
+Et=error_pred(pred2,Y_test); % Error of test data
+fprintf('EBT model statistics on test data: \n')
+Et=error_pred(pred3,Y_test); % Error of test data
 
 %% Figures
 
@@ -56,6 +79,10 @@ R=length(X_test);
 plot(1:R+Z,[X_test;Y_test],'Color',[0.4660 0.6740 0.1880])
 hold on
 plot(R:R+Z,[X_test(end);pred],'Color',[0.4940 0.1840 0.5560])
+plot(R:R+Z,[X_test(end);pred1],':','Color',[0.8500 0.3250 0.0980])
+plot(R:R+Z,[X_test(end);pred2],'--','Color',[0.9290 0.6940 0.1250])
+plot(R:R+Z,[X_test(end);pred3],'-.','Color',[0 0.4470 0.7410])
 xlabel('Time');ylabel('Price')
-legend('Actual price','Predicted price')
+legend('Actual price','MI-WASDTSN Prediction','LSVM Prediction',...
+    'EGPR Prediction','EBT Prediction')
 hold off

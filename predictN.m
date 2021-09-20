@@ -1,4 +1,4 @@
-function Y=predictN(X,M,W,N,x_min,x_max,Z)
+function Y=predictN(X,M,W,V,x_min,x_max,Z)
 % function for predicting
 
 X_N=Normalization(X,x_min,x_max);
@@ -6,7 +6,7 @@ X_N=Normalization(X,x_min,x_max);
 
 YY=[X_N;zeros(Z,1)];
 for i=1:Z
-Q=Qmatrix(YY(1:M+i),M,N');
+Q=Qmatrix(YY(1:M+i),M,V');
 YY(M+1:M+i)=Q*W;
 end
 Y_N=YY(end-Z+1:end);
