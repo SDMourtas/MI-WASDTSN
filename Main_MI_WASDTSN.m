@@ -11,7 +11,7 @@
 %                                                                   %
 %   Main paper: S.D.Mourtas, "A Multi-Input WASD for Time-Series    %
 %   Neuronet with Applications in FRED's Industrial Indices",       %
-%   (submitted)                                                     %
+%   Journal of Forecasting, (2022)                                  %
 %                                                                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
