@@ -4,7 +4,7 @@ The purpose of this package is to present applications on Federal Reserve Bank o
 Employing a power sigmoid activation function, the WASDTS algorithm handles the model fitting and validation by determining the optimal input variables number and the weights of the MI-WASDTSN. More specifically, the WASDTS algorithm finds and holds only the activation function powers that reduce the model's error during validation. 
 
 The main article used is the following:
-*	S.D.Mourtas, "A Weights Direct Determination Neuronet for Time-Series with Applications in the Industrial Indices of the Federal Reserve Bank of St. Louis", Journal of Forecasting, (2022)
+*	S.D.Mourtas, "A Weights Direct Determination Neuronet for Time-Series with Applications in the Industrial Indices of the Federal Reserve Bank of St. Louis", Journal of Forecasting, 41(7), 1512-1524 (2022)
 
 Also, the package includes the following six datasets:
 *	Board of Governors of the Federal Reserve System (US), Industrial Production: Utilities: Electric and Gas Utilities (NAICS = 2211,2) [IPG2211A2N], retrieved from FRED at https://fred.stlouisfed.org/series/IPG2211A2N
